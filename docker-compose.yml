@@ -1,0 +1,18 @@
+services:
+  service_one:
+    build:
+      context: ./service_one/
+    ports:
+      - "8000:8000"
+    environment:
+      - SERVICE_TWO_URL=service_two
+      - SERVICE_TWO_PORT=8001
+
+  service_two:
+    build:
+      context: ./service_two/
+    ports:
+      - "8001:8001"
+    environment:
+      - SERVICE_ONE_URL=service_one
+      - SERVICE_ONE_PORT=8000
