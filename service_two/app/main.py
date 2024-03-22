@@ -35,6 +35,7 @@ def read_root():
 @app.get("/test")
 async def root(
     client_session: ClientSession = Depends(client_session_dep),
+    q_param_example: int = 0,
 ) -> str:
     async with client_session.get(f"http://{SERVICE_ONE_URL}:{SERVICE_ONE_PORT}/") as the_response:
-        return await the_response.text()
+        return await the_response.json()
