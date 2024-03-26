@@ -9,6 +9,8 @@ services:
       - SERVICE_TWO_PORT=8001
     volumes:
       - ./service_one:/code
+    stdin_open: true
+    tty: true
 
   service_two:
     build:
@@ -20,3 +22,5 @@ services:
       - SERVICE_ONE_PORT=8000
     volumes:
       - ./service_two:/code
+    stdin_open: true
+    tty: true
