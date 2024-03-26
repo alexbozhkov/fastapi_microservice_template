@@ -8,7 +8,7 @@ from aiohttp import ClientSession
 from fastapi import Depends, FastAPI
 from starlette.requests import Request
 
-app: Final = FastAPI()
+app: Final = FastAPI(docs_url="/")
 SERVICE_TWO_URL = os.getenv("SERVICE_TWO_URL")
 SERVICE_TWO_PORT = os.getenv("SERVICE_TWO_PORT")
 
@@ -27,15 +27,15 @@ def client_session_dep(request: Request) -> ClientSession:
     return request.app.state.client_session
 
 
-@app.get("/")
+@app.get("/hello")
 def read_root():
     return {"Hello": "FROM SERVICE ONE"}
 
 
-@app.get("/test")
+@app.get("/call")
 async def root(
     client_session: ClientSession = Depends(client_session_dep),
     q_param_example: str = None,
 ) -> str:
-    async with client_session.get(f"http://{SERVICE_TWO_URL}:{SERVICE_TWO_PORT}/") as the_response:
+    async with client_session.get(f"http://{SERVICE_TWO_URL}:{SERVICE_TWO_PORT}/hello") as the_response:
         return await the_response.json()
