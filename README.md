@@ -15,7 +15,7 @@ service_one-1  | INFO:     Started reloader process [1] using statreload
 ...
 ```
 
-Debug service by adding `import ipdb; ipdb.set_trace()` in the code and then attach to the container
+Debug service by adding `import ipdb; ipdb.set_trace()` in the code and then attach to the container.
 ```bash
 docker attach fastapi_microservice_template-service_one-1
 ```
