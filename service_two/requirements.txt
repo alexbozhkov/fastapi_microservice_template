@@ -1,4 +1,4 @@
-aiohttp==3.10.8
+aiohttp==3.11.18
 fastapi>=0.68.0,<0.69.0
 ipdb==0.13.13
 pydantic>=1.8.0,<2.0.0
